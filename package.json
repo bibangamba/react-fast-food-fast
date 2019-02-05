@@ -12,8 +12,14 @@
     "@babel/core": "7.1.0",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "8.0.2",
     "css-loader": "1.0.0",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "style-loader": "0.23.0",
     "webpack": "4.19.1",
     "webpack-cli": "3.1.1",
@@ -23,7 +29,8 @@
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "test": "jest --watch",
-    "test:cov": "jest  --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=src/**/*.jsx --collectCoverageFrom=!src/index.jsx --collectCoverageFrom=!src/serviceWorker.js"
+    "test:cov": "jest  --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=src/**/*.jsx --collectCoverageFrom=!src/index.jsx --collectCoverageFrom=!src/serviceWorker.js",
+    "lint": "eslint src/**/*.js src/**/*.jsx"
   },
   "dependencies": {
     "enzyme": "^3.8.0",
@@ -35,6 +42,7 @@
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.5",
     "react-redux": "^6.0.0",
+    "react-toastify": "^4.5.2",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.3",
