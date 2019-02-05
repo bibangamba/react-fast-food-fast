@@ -16,9 +16,11 @@ react-fast-food-fast
 │   travis.yml
 │   yarn.lock
 │
+└───public
+|   |index.html
+|   |...
 └───src
 │   │   Router.jsx
-│   │   file012.txt
 │   │
 │   └───components
 │   |   │   component1.jsx
