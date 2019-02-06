@@ -20,6 +20,8 @@
                 "typeLiterals": "ignore"
             }
         }],
-        "comma-dangle": ["error", "never"]
+        "comma-dangle": ["error", "never"],
+        "arrow-parens": 0,
+        "object-curly-newline": 0
     }
 }
