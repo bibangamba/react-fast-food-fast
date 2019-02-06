@@ -9,6 +9,16 @@
     "rules": {
         "quotes": [2, "double", {
             "avoidEscape": true
-        }]
+        }],
+        "trailing-comma": [true, {
+            "singleline": "ignore",
+            "multiline": {
+                "objects": "ignore",
+                "arrays": "ignore",
+                "functions": "ignore",
+                "typeLiterals": "ignore"
+            }
+        }],
+        "comma-dangle": ["error", "never"]
     }
 }
