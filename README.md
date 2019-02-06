@@ -1,6 +1,9 @@
 # Fast Food Fast
 
-*travis build *test coverage *maintainability *hound reviewed
+[![Build Status](https://travis-ci.org/bibangamba/react-fast-food-fast.svg?branch=develop)](https://travis-ci.org/bibangamba/react-fast-food-fast)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/cc613e00de3ca5f0235e/test_coverage)](https://codeclimate.com/github/bibangamba/react-fast-food-fast/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cc613e00de3ca5f0235e/maintainability)](https://codeclimate.com/github/bibangamba/react-fast-food-fast/maintainability)
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-7af442.svg)](https://houndci.com)
 
 # Description.
 
@@ -47,13 +50,10 @@ react-fast-food-fast
 
 Below is a list of endpoints consumed by this frontend;
 
-    POST	sign up as a user	email, password, confirm_password, name, phone
-    POST	login so as to get an auth token	email, password
-
-| Endpoints                | Action                                      |
-| ------------------------ | ------------------------------------------- |
-| POST /api/v2/auth/login  | This endpoint is used for logging in        |
-| POST /api/v2/auth/signup | This endpoint is used to register new users |
+| Endpoints                | Action                                      | Parameters                                     |
+| ------------------------ | ------------------------------------------- | ---------------------------------------------- |
+| POST /api/v2/auth/login  | This endpoint is used for logging in        | email, password                                |
+| POST /api/v2/auth/signup | This endpoint is used to register new users | email, password, confirm_password, name, phone |
 
 # Setup
 
