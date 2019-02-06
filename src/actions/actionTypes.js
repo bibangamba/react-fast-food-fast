@@ -1,4 +1,4 @@
 const actionTypes = {
-  ACTION: "ACTION",
+  ACTION: "ACTION"
 };
 export default actionTypes;
