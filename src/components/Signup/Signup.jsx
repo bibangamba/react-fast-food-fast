@@ -2,14 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 
-const Signup = ({ onChange, onSubmit, error }) => (
-  <MDBContainer>
-    <MDBRow>
-      <MDBCol md="6">
-        <p className="h6 text-center mb-4">{`problems: ${error}`}</p>
-        <form onSubmit={onSubmit}>
-          <p className="h4 text-center mb-4">Sign up</p>
-          <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+const Signup = ({
+  onChange,
+  onSubmit,
+  registerButtonText,
+  registerButtonDisabled
+}) => (
+  <MDBContainer className="mt-5">
+    <MDBRow className="justify-content-center">
+      <MDBCol md="6" className="mt-4">
+        <form onSubmit={onSubmit} className="w-100 ">
+          <p className=" text-black-50 h4 text-center mb-1">Sign up</p>
+          <label
+            htmlFor="defaultFormRegisterNameEx"
+            className="text-black-50  w-100"
+          >
             Full name
             <input
               type="text"
@@ -20,7 +27,10 @@ const Signup = ({ onChange, onSubmit, error }) => (
             />
           </label>
           <br />
-          <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
+          <label
+            htmlFor="defaultFormRegisterEmailEx"
+            className="text-black-50 w-100"
+          >
             Email address
             <input
               type="email"
@@ -31,7 +41,10 @@ const Signup = ({ onChange, onSubmit, error }) => (
             />
           </label>
           <br />
-          <label htmlFor="defaultFormRegisterPhoneEx" className="grey-text">
+          <label
+            htmlFor="defaultFormRegisterPhoneEx"
+            className="text-black-50 w-100"
+          >
             Phone number
             <input
               name="phone"
@@ -42,7 +55,10 @@ const Signup = ({ onChange, onSubmit, error }) => (
             />
           </label>
           <br />
-          <label htmlFor="defaultFormRegisterPasswordEx" className="grey-text">
+          <label
+            htmlFor="defaultFormRegisterPasswordEx"
+            className="text-black-50 w-100"
+          >
             Password
             <input
               name="password"
@@ -55,7 +71,7 @@ const Signup = ({ onChange, onSubmit, error }) => (
           <br />
           <label
             htmlFor="defaultFormRegisterRepeatPasswordEx"
-            className="grey-text"
+            className="text-black-50  w-100"
           >
             Confirm password
             <input
@@ -68,8 +84,13 @@ const Signup = ({ onChange, onSubmit, error }) => (
           </label>
 
           <div className="text-center mt-4">
-            <MDBBtn color="unique" type="submit">
-              Register
+            <MDBBtn
+              disabled={registerButtonDisabled}
+              color="rgba-blue-strong"
+              className="rgba-blue-strong"
+              type="submit"
+            >
+              {registerButtonText}
             </MDBBtn>
           </div>
         </form>
@@ -81,11 +102,13 @@ const Signup = ({ onChange, onSubmit, error }) => (
 Signup.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})])
+  registerButtonDisabled: PropTypes.bool,
+  registerButtonText: PropTypes.string
 };
 
 Signup.defaultProps = {
-  error: {}
+  registerButtonDisabled: false,
+  registerButtonText: "Register"
 };
 
 export default Signup;

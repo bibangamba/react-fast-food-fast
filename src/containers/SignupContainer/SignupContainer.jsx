@@ -1,30 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { signUpAction } from "../../actions/signupAction";
 import SignupForm from "../../components/Signup/Signup";
 
-export class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      name: "",
-      phone: "",
-      error: {}
-    };
-  }
+export class SignupContainer extends Component {
+  state = {
+    email: "",
+    password: "",
+    name: "",
+    phone: "",
+    confirm_password: "",
+    signupFailed: undefined,
+    signupSuccess: undefined,
+    registerButtonText: "Register",
+    registerButtonDisabled: false
+  };
 
   componentWillReceiveProps(nextProps) {
-    const { error } = nextProps.data;
-    if (error) {
-      this.setState({ error });
-    }
-
-    if (nextProps.data.toString().includes("verification")) {
+    const { signupFailed, signupSuccess, diffState } = nextProps;
+    if (signupFailed) {
+      toast.error(signupFailed);
+      this.setState({
+        signupFailed,
+        diffState,
+        registerButtonDisabled: false,
+        registerButtonText: "Register"
+      });
+    } else if (signupSuccess) {
       const { history } = this.props;
       history.push("/login");
+      toast.success(signupSuccess);
     }
   }
 
@@ -32,10 +39,21 @@ export class Signup extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { email, password, name, phone } = this.state;
+    this.setState({
+      registerButtonDisabled: true,
+      registerButtonText: "Saving..."
+    });
+    const {
+      email,
+      password,
+      name,
+      phone,
+      confirm_password: confirmPassword
+    } = this.state;
     const data = {
       email,
       password,
+      confirm_password: confirmPassword,
       name,
       phone
     };
@@ -45,34 +63,49 @@ export class Signup extends Component {
   };
 
   render() {
-    const { error } = this.state;
+    const {
+      signupSuccess,
+      signupFailed,
+      diffState,
+      registerButtonText,
+      registerButtonDisabled
+    } = this.state;
     return (
       <SignupForm
         onChange={this.onChange}
         onSubmit={this.onSubmit}
-        errors={error}
+        signupFailed={signupFailed}
+        diffState={diffState}
+        signupSuccess={signupSuccess}
+        registerButtonText={registerButtonText}
+        registerButtonDisabled={registerButtonDisabled}
       />
     );
   }
 }
 
-Signup.propTypes = {
-  data: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
+SignupContainer.propTypes = {
   signUpAction: PropTypes.func.isRequired,
+  signupSuccess: PropTypes.string,
+  signupFailed: PropTypes.string,
+  diffState: PropTypes.string,
   history: PropTypes.shape({})
 };
 
-Signup.defaultProps = {
-  data: {},
-  history: {}
+SignupContainer.defaultProps = {
+  history: {},
+  signupFailed: undefined,
+  signupSuccess: undefined,
+  diffState: undefined
 };
 
 export const mapStateToProps = state => ({
-  signupOK: state.signupReducer.success,
-  signupFailed: state.signupReducer.error
+  signupSuccess: state.signupReducer.success,
+  signupFailed: state.signupReducer.error,
+  diffState: state.signupReducer.diff_in_state
 });
 
 export default connect(
   mapStateToProps,
   { signUpAction }
-)(Signup);
+)(SignupContainer);
