@@ -1,24 +1,29 @@
 import React from "react";
+import { Provider } from "react-redux";
 import { hot } from "react-hot-loader";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MDBContainer } from "mdbreact";
+import { ToastContainer } from "react-toastify";
+import store from "./store";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.min.css";
 import NotFound from "./containers/404/404";
 import Nav from "./containers/NavBar/NavBar";
-import SignupContainer from "./containers/SignupContainer/SignupContainer";
+import SignupView from "./containers/SignupContainer/SignupContainer";
 
 const App = () => (
-  <MDBContainer fluid>
+  <MDBContainer>
     <div className="App">
       <Router>
-        <div>
+        <Provider store={store}>
+          <ToastContainer position="top-center" autoClose={false} />
           <Nav />
           <Switch>
-            <Route path="/" component={SignupContainer} exact />
-            <Route path="/register" component={SignupContainer} exact />
+            <Route path="/" component={SignupView} exact />
+            <Route path="/register" component={SignupView} exact />
             <Route path="/*" component={NotFound} />
           </Switch>
-        </div>
+        </Provider>
       </Router>
     </div>
   </MDBContainer>

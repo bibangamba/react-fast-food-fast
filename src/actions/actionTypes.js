@@ -1,4 +1,5 @@
 const actionTypes = {
-  ACTION: "ACTION"
+  SIGNUPFAIL: "SIGNUPFAIL",
+  SIGNUPSUCCESS: "SIGNUPSUCCESS"
 };
 export default actionTypes;

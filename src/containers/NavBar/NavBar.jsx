@@ -15,15 +15,21 @@ class NavigationBar extends Component {
     isWideEnough: false
   };
 
-  onClick() {
+  onClick = () => {
     this.setState(prevState => ({ collapse: !prevState.collapse }));
-  }
+  };
 
   render() {
     const { collapse, isWideEnough } = this.state;
     return (
       <header>
-        <MDBNavbar color="bg-primary" fixed="top" dark expand="md" scrolling>
+        <MDBNavbar
+          color="rgba-blue-strong"
+          fixed="top"
+          dark
+          expand="md"
+          scrolling
+        >
           <MDBNavbarBrand href="/">
             <strong>FastFoodFast</strong>
           </MDBNavbarBrand>
@@ -31,13 +37,13 @@ class NavigationBar extends Component {
           <MDBCollapse isOpen={collapse} navbar>
             <MDBNavbarNav left>
               <MDBNavItem active>
-                <MDBNavLink to="#">Home</MDBNavLink>
+                <MDBNavLink to="/">Home</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="#">Menu</MDBNavLink>
+                <MDBNavLink to="/menu">Menu</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="#">Orders</MDBNavLink>
+                <MDBNavLink to="/orders">Orders</MDBNavLink>
               </MDBNavItem>
             </MDBNavbarNav>
           </MDBCollapse>
