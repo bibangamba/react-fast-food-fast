@@ -1,16 +1,11 @@
 import { shallow } from "enzyme";
 import React from "react";
-import App from "./App";
+import SignupContainer from "./SignupContainer";
 
-const props = {
-  onChange: jest.fn(),
-  onSubmit: jest.fn(),
-  error: ""
-};
-describe("App test", () => {
+describe("SignupContainer test", () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<App {...props} />);
+    wrapper = shallow(<SignupContainer />);
   });
 
   it("matches snapshot", () => {
