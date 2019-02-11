@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import NotFound from "./containers/404/404";
 import Nav from "./containers/NavBar/NavBar";
 import SignupView from "./containers/SignupContainer/SignupContainer";
+import SigninView from "./containers/SigninContainer/SigninContainer";
 
 const App = () => (
   <MDBContainer>
@@ -21,6 +22,7 @@ const App = () => (
           <Switch>
             <Route path="/" component={SignupView} exact />
             <Route path="/register" component={SignupView} exact />
+            <Route path="/signin" component={SigninView} exact />
             <Route path="/*" component={NotFound} />
           </Switch>
         </Provider>

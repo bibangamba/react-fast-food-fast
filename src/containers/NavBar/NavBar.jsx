@@ -36,14 +36,11 @@ class NavigationBar extends Component {
           {!isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
           <MDBCollapse isOpen={collapse} navbar>
             <MDBNavbarNav left>
-              <MDBNavItem active>
-                <MDBNavLink to="/">Home</MDBNavLink>
+              <MDBNavItem>
+                <MDBNavLink to="/">Signup</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="/menu">Menu</MDBNavLink>
-              </MDBNavItem>
-              <MDBNavItem>
-                <MDBNavLink to="/orders">Orders</MDBNavLink>
+                <MDBNavLink to="/signin">Signin</MDBNavLink>
               </MDBNavItem>
             </MDBNavbarNav>
           </MDBCollapse>
