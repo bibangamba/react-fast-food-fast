@@ -3,7 +3,8 @@ import { shallow } from "enzyme";
 import { SigninContainer, mapStateToProps } from "./SigninContainer";
 
 const signinAction = jest.fn();
-const props = { signinAction, history: { push: jest.fn() } };
+const changeLoginState = jest.fn();
+const props = { signinAction, history: { push: jest.fn() }, changeLoginState };
 const initialState = {
   email: "",
   password: "",
