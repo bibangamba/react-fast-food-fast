@@ -26,7 +26,9 @@ export class SigninContainer extends Component {
         signinButtonText: "Signin"
       });
     } else if (signinSuccess) {
-      const { history } = this.props;
+      const { history, changeLoginState } = this.props;
+      changeLoginState(true);
+      // window.location.href = "/menu";
       history.push("/menu");
       toast.success(signinSuccess);
     }
@@ -77,7 +79,8 @@ SigninContainer.propTypes = {
   signinSuccess: PropTypes.string,
   signinFailed: PropTypes.string,
   diffState: PropTypes.string,
-  history: PropTypes.shape({})
+  history: PropTypes.shape({}),
+  changeLoginState: PropTypes.func.isRequired
 };
 
 SigninContainer.defaultProps = {
