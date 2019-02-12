@@ -4,7 +4,7 @@ import { SigninContainer, mapStateToProps } from "./SigninContainer";
 
 const signinAction = jest.fn();
 const changeLoginState = jest.fn();
-const props = { signinAction, history: { push: jest.fn() }, changeLoginState };
+const props = { signinAction, history: { push: jest.fn() }, changeLoginState, error: "mock error message" };
 const initialState = {
   email: "",
   password: "",
@@ -32,7 +32,7 @@ describe("test signup view", () => {
     expect(wrapper).toMatchSnapshot();
   });
   it("test handle onsubmit event", () => {
-    wrapper.instance().onSubmit({ preventDefault() {} });
+    wrapper.instance().onSubmit({ preventDefault() { } });
     expect(wrapper.state("signinButtonText")).toEqual("Signing in...");
   });
 
@@ -42,6 +42,7 @@ describe("test signup view", () => {
       .onChange({ target: { name: "email", value: "andrew@g.com" } });
     expect(wrapper.state("email")).toEqual("andrew@g.com");
   });
+
   it("should receive new fail props", () => {
     wrapper.setProps({
       signinFailed: "mock fail"

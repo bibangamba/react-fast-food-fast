@@ -43,7 +43,7 @@ describe("unit tests for all 3 actions", () => {
   });
 
   it("should dispatch signinFail action", () => {
-    const data = "mocked fail response";
+    const data = { error: "Email/Password authentication failed" };
     const ts = "123253454353";
 
     const failAction = [
