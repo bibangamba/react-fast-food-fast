@@ -34,10 +34,12 @@ export class SigninContainer extends Component {
       });
     } else if (signinSuccess) {
       toast.success(signinSuccess);
-      setInterval(() => {
-        window.location.replace("/orders");
-      }, 2000);
+      setInterval(this.redirectToOrders, 2000);
     }
+  }
+
+  redirectToOrders = () => {
+    window.location.replace("/orders");
   }
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
