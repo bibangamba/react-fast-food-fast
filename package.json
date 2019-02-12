@@ -29,7 +29,7 @@
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "test": "jest --watch",
-    "test:cov": "jest  --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=src/**/*.jsx --collectCoverageFrom=!src/index.jsx --collectCoverageFrom=!src/serviceWorker.js",
+    "test:cov": "jest  --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=src/**/*.jsx --collectCoverageFrom=!src/index.jsx --collectCoverageFrom=!src/App.jsx --collectCoverageFrom=!src/serviceWorker.js",
     "lint": "eslint src/**/*.js src/**/*.jsx",
     "heroku-postbuild": "yarn run build"
   },

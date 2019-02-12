@@ -6,4 +6,4 @@ import "mdbreact/dist/css/mdb.css";
 
 import AppView from "./App";
 
-ReactDOM.render(<AppView />, document.getElementById("root"));
+ReactDOM.render(<AppView />, document.getElementById('root'));

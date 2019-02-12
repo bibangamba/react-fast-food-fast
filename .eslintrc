@@ -8,21 +8,10 @@
     },
     "parser": "babel-eslint",
     "rules": {
-        "quotes": [2, "double", {
-            "avoidEscape": true
-        }],
-        "trailing-comma": [true, {
-            "singleline": "ignore",
-            "multiline": {
-                "objects": "ignore",
-                "arrays": "ignore",
-                "functions": "ignore",
-                "typeLiterals": "ignore"
-            }
-        }],
         "comma-dangle": ["error", "never"],
         "arrow-parens": 0,
         "object-curly-newline": 0,
-        "implicit-arrow-linebreak": 0
+        "implicit-arrow-linebreak": 0,
+        "quotes": 0
     }
 }

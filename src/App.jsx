@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import { hot } from "react-hot-loader";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -11,55 +11,55 @@ import NotFound from "./containers/404/404";
 import Nav from "./containers/NavBar/NavBar";
 import SignupView from "./containers/SignupContainer/SignupContainer";
 import SigninView from "./containers/SigninContainer/SigninContainer";
+import OrdersView from "./containers/OrdersContainer/OrdersContainer";
 
-export class App extends Component {
-  state = { loggedIn: false };
+export const getJwtToken = () => sessionStorage.getItem("jwt_token");
+export const isAuthenticated = () => !!getJwtToken();
 
-  changeLoginState = newState => {
-    this.setState({ loggedIn: newState });
-  };
-
-  render() {
-    const { loggedIn } = this.state;
-    return (
-      <MDBContainer>
-        <div className="App">
-          <Router>
-            <Provider store={store}>
-              <ToastContainer position="top-center" autoClose={false} />
-              <Nav loginState={loggedIn} />
-              <Switch>
-                <Route path="/" component={SignupView} exact />
-                <Route path="/register" component={SignupView} exact />
-                {/* <Route path="/signin" component={SigninView} exact /> */}
-                <Route
-                  path="/signin"
-                  render={props => (
+export const App = () => (
+  <MDBContainer>
+    <div className="App">
+      <Router>
+        <Provider store={store}>
+          <ToastContainer position="top-center" autoClose={false} />
+          <Nav />
+          <Switch>
+            <Route path="/" component={SignupView} exact />
+            <Route path="/register" component={SignupView} exact />
+            <Route
+              path="/orders"
+              render={props => {
+                if (!isAuthenticated()) {
+                  window.setInterval(() => {
+                    window.location.href = "/signin";
+                  }, 2000);
+                  return (
                     <SigninView
-                      changeLoginState={this.changeLoginState}
+                      error="Cannot access orders without logging in"
                       {...props}
                     />
-                  )}
-                  exact
-                />
-                <Route
-                  path="/login"
-                  render={props => (
-                    <SigninView
-                      changeLoginState={this.changeLoginState}
-                      {...props}
-                    />
-                  )}
-                  exact
-                />
-                <Route path="/*" component={NotFound} />
-              </Switch>
-            </Provider>
-          </Router>
-        </div>
-      </MDBContainer>
-    );
-  }
-}
+                  );
+                }
+                return <OrdersView {...props} />;
+              }}
+              exact
+            />
+            <Route
+              path="/signin"
+              render={props => <SigninView {...props} />}
+              exact
+            />
+            <Route
+              path="/login"
+              render={props => <SigninView {...props} />}
+              exact
+            />
+            <Route path="/*" component={NotFound} />
+          </Switch>
+        </Provider>
+      </Router>
+    </div>
+  </MDBContainer>
+);
 
 export default hot(module)(App);
