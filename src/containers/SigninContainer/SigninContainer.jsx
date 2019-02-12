@@ -15,6 +15,13 @@ export class SigninContainer extends Component {
     signinButtonDisabled: false
   };
 
+  componentDidMount() {
+    const { error } = this.props;
+    if (error) {
+      toast.error(error);
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     const { signinFailed, signinSuccess, diffState } = nextProps;
     if (signinFailed) {
@@ -26,11 +33,10 @@ export class SigninContainer extends Component {
         signinButtonText: "Signin"
       });
     } else if (signinSuccess) {
-      const { history, changeLoginState } = this.props;
-      changeLoginState(true);
-      // window.location.href = "/menu";
-      history.push("/menu");
       toast.success(signinSuccess);
+      setInterval(() => {
+        window.location.replace("/orders");
+      }, 2000);
     }
   }
 
@@ -80,14 +86,15 @@ SigninContainer.propTypes = {
   signinFailed: PropTypes.string,
   diffState: PropTypes.string,
   history: PropTypes.shape({}),
-  changeLoginState: PropTypes.func.isRequired
+  error: PropTypes.string
 };
 
 SigninContainer.defaultProps = {
   history: {},
   signinFailed: undefined,
   signinSuccess: undefined,
-  diffState: undefined
+  diffState: undefined,
+  error: undefined
 };
 
 export const mapStateToProps = state => ({

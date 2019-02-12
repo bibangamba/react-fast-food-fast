@@ -23,6 +23,7 @@ export const signinAction = data => dispatch =>
     .then(response => {
       if (response.success) {
         dispatch(signinSuccess(response.success));
+        sessionStorage.setItem("jwt_token", response.jwt_token);
       } else if (response.error) {
         dispatch(signinFail(response.error, new Date().getTime()));
       }

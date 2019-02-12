@@ -8,16 +8,12 @@ import {
   MDBNavbarToggler,
   MDBCollapse
 } from "mdbreact";
-import PropTypes from "prop-types";
+import { isAuthenticated } from "../../App";
 
 class NavigationBar extends Component {
   state = {
     collapse: false,
     isWideEnough: false
-  };
-
-  props = {
-    loginState: false
   };
 
   onClick = () => {
@@ -26,8 +22,8 @@ class NavigationBar extends Component {
 
   render() {
     const { collapse, isWideEnough } = this.state;
-    const { loginState } = this.props;
-    if (loginState) {
+
+    if (isAuthenticated()) {
       return (
         <header>
           <MDBNavbar
@@ -48,6 +44,18 @@ class NavigationBar extends Component {
                 </MDBNavItem>
                 <MDBNavItem>
                   <MDBNavLink to="/orders">Orders</MDBNavLink>
+                </MDBNavItem>
+              </MDBNavbarNav>
+              <MDBNavbarNav right>
+                <MDBNavItem>
+                  <MDBNavLink
+                    onClick={() => {
+                      sessionStorage.clear();
+                    }}
+                    to="/signin"
+                  >
+                    Signout
+                  </MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>
@@ -83,13 +91,5 @@ class NavigationBar extends Component {
     );
   }
 }
-
-NavigationBar.propTypes = {
-  loginState: PropTypes.bool
-};
-
-NavigationBar.defaultProps = {
-  loginState: false
-};
 
 export default NavigationBar;
