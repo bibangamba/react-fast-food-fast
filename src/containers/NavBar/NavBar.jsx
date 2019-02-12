@@ -20,6 +20,10 @@ class NavigationBar extends Component {
     this.setState(prevState => ({ collapse: !prevState.collapse }));
   };
 
+  logOut = () => {
+    sessionStorage.clear();
+  };
+
   render() {
     const { collapse, isWideEnough } = this.state;
 
@@ -49,9 +53,7 @@ class NavigationBar extends Component {
               <MDBNavbarNav right>
                 <MDBNavItem>
                   <MDBNavLink
-                    onClick={() => {
-                      sessionStorage.clear();
-                    }}
+                    onClick={this.logOut}
                     to="/signin"
                   >
                     Signout

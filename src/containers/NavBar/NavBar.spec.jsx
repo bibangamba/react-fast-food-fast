@@ -21,4 +21,9 @@ describe("NavBar test", () => {
     wrapper.instance().onClick();
     expect(wrapper.instance().state.collapse).toEqual(!initialState.collapse);
   });
+
+  it("should invoke the logOut function", () => {
+    wrapper.instance().logOut();
+    expect(window.sessionStorage.getItem('jwt_token')).toEqual(null);
+  });
 });
